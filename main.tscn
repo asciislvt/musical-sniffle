@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg41557m18qa"]
+
+[ext_resource type="Texture2D" uid="uid://cq4ecvj0nxqg" path="res://fug.png" id="1_ig7tw"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
+panorama = ExtResource("1_ig7tw")
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("PanoramaSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
