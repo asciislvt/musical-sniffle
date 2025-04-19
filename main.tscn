@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg41557m18qa"]
+[gd_scene load_steps=6 format=3 uid="uid://cg41557m18qa"]
 
 [ext_resource type="Texture2D" uid="uid://cq4ecvj0nxqg" path="res://fug.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bngxmdc1eoili" path="res://InventoryUI.tscn" id="2_0xm2m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("1_ig7tw")
@@ -20,3 +21,6 @@ glow_enabled = true
 environment = SubResource("Environment_1bvp3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="InventorUI" parent="." instance=ExtResource("2_0xm2m")]
+visible = false
