@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://7ao0p2o2ua37"]
 
 [node name="InventoryItem" type="Control"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 0

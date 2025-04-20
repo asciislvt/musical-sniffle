@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg41557m18qa"]
+[gd_scene load_steps=10 format=3 uid="uid://cg41557m18qa"]
 
 [ext_resource type="Texture2D" uid="uid://cq4ecvj0nxqg" path="res://assets/fug.png" id="1_20aov"]
 [ext_resource type="PackedScene" uid="uid://bngxmdc1eoili" path="res://inventory/InventoryUI.tscn" id="2_xh4lv"]
 [ext_resource type="Script" uid="uid://grbe6m38utyu" path="res://inventory/inventory.gd" id="3_rfrky"]
 [ext_resource type="Resource" uid="uid://t1y3mnarlx3i" path="res://resources/inv_data.tres" id="4_52idc"]
+[ext_resource type="FontFile" uid="uid://dncpvtl2bun61" path="res://assets/def_font.webp" id="5_lquwl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("1_20aov")
@@ -16,6 +17,9 @@ background_mode = 2
 sky = SubResource("Sky_h2yge")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mycd"]
+font = ExtResource("5_lquwl")
 
 [node name="Main" type="Node3D"]
 
@@ -31,3 +35,16 @@ environment = SubResource("Environment_1bvp3")
 
 [node name="InventorUI" parent="." instance=ExtResource("2_xh4lv")]
 visible = false
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_bottom = 23.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+text = "<tab> - open inventory
+<z> - add random item to inventory"
+label_settings = SubResource("LabelSettings_7mycd")
+horizontal_alignment = 2
