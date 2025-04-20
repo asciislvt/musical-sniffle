@@ -11,6 +11,7 @@ func _ready() -> void:
 	if grid_inv_array.is_empty():
 		var _scene = grid_inventory_scene.instantiate()
 		hbox.add_child(_scene)
+		grid_inv_array.append(_scene)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
