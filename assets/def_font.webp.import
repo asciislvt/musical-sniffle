@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dncpvtl2bun61"
-path="res://.godot/imported/def_font.webp-40c552cffa882c4b660e958fc40d5327.ctex"
+path="res://.godot/imported/def_font.webp-6450db9a4a2b9698d22a89066a2e6dd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://def_font.webp"
-dest_files=["res://.godot/imported/def_font.webp-40c552cffa882c4b660e958fc40d5327.ctex"]
+source_file="res://assets/def_font.webp"
+dest_files=["res://.godot/imported/def_font.webp-6450db9a4a2b9698d22a89066a2e6dd6.ctex"]
 
 [params]
 
