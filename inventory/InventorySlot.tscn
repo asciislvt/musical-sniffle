@@ -1,5 +1,20 @@
-[gd_scene format=3 uid="uid://5ckj156fdaic"]
+[gd_scene load_steps=3 format=3 uid="uid://5ckj156fdaic"]
+
+[ext_resource type="Script" uid="uid://s2wbirdy767a" path="res://inventory/inventory_slot.gd" id="1_nsk0a"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_t3ewh"]
+size = Vector2(64, 64)
 
 [node name="InventorySlot" type="Control"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_nsk0a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("PlaceholderTexture2D_t3ewh")
+expand_mode = 1

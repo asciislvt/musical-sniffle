@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=3 format=3 uid="uid://t1y3mnarlx3i"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=2 format=3 uid="uid://t1y3mnarlx3i"]
 
-[ext_resource type="Script" uid="uid://dtgtgnaulapfv" path="res://inventory/item_data.gd" id="1_cokq0"]
 [ext_resource type="Script" uid="uid://cnll8icpao26k" path="res://inventory/inventory_data.gd" id="1_ty5iy"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ty5iy")
-max_items = 6
-_item_array = Array[ExtResource("1_cokq0")]([])
+max_slots = 7
+grid_width = 2
 metadata/_custom_type_script = "uid://cnll8icpao26k"
