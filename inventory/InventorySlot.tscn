@@ -1,20 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://5ckj156fdaic"]
 
 [ext_resource type="Script" uid="uid://s2wbirdy767a" path="res://inventory/inventory_slot.gd" id="1_nsk0a"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_t3ewh"]
-size = Vector2(64, 64)
+[ext_resource type="Texture2D" uid="uid://b7ikv1vux05e7" path="res://assets/slot.png" id="2_7wnod"]
 
 [node name="InventorySlot" type="Control"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nsk0a")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+texture = ExtResource("2_7wnod")
+expand_mode = 1
+
+[node name="Filter" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = SubResource("PlaceholderTexture2D_t3ewh")
-expand_mode = 1
+color = Color(0, 0, 0, 0)

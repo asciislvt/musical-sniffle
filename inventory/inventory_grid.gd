@@ -6,6 +6,7 @@ class_name InventoryGrid
 
 var _slot_array: Array[Control] = []
 var _columns: int
+var _item_held: Control
 
 func _ready() -> void:
 	if !_grid_container:
