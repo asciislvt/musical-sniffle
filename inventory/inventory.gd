@@ -6,6 +6,7 @@ class_name InventoryManager
 func _ready() -> void:
 	if !data:
 		print_debug("no inventory data!")
+	data.init_inv()
 	Global.inv_player_data_requested.connect(self._on_data_requested)
 
 func _on_data_requested(_requester: InventoryGrid) -> void:

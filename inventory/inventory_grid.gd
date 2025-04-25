@@ -31,8 +31,8 @@ func _build_inventory(_data: InventoryData) -> void:
 		_grid_container.add_child(_slot)
 		_slot_array.append(_slot)
 
-		var _debug_string = "New slot created! Position: ({0}, {1})"
-		print_debug(_debug_string.format([_x, _y]))
+		# var _debug_string = "New slot created! Position: ({0}, {1})"
+		# print_debug(_debug_string.format([_x, _y]))
 
 func _clear_grid() -> void:
 	for _child in _grid_container.get_children():
