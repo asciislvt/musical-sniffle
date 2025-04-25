@@ -22,17 +22,19 @@ func _build_inventory(_data: InventoryData) -> void:
 	_grid_container.columns = _columns
 
 	for i in _data.max_slots:
-		var _slot: InventorySlot = slot_scene.instantiate()
-
 		var _x = i % _columns
 		var _y = i / _columns
+		var _pos = Vector2i(_x, _y)
 
-		_slot.set_grid_position(Vector2i(_x, _y))
-		_grid_container.add_child(_slot)
-		_slot_array.append(_slot)
+		_add_slot(_grid_container, _pos)
 
-		# var _debug_string = "New slot created! Position: ({0}, {1})"
-		# print_debug(_debug_string.format([_x, _y]))
+
+func _add_slot(_parent: Node, _pos: Vector2i) -> void:
+	var _slot: InventorySlot = slot_scene.instantiate()
+
+	_slot.set_grid_position(_pos)
+	_slot_array.append(_slot)
+	_parent.add_child(_slot)
 
 func _clear_grid() -> void:
 	for _child in _grid_container.get_children():

@@ -4,12 +4,12 @@ class_name InventoryData
 @export var max_slots: int = 8
 @export var grid_width: int = 4
 var _grid_positions: Array[Vector2i] = []
-var _item_array: Array[ItemData] = []
+var _item_array: Array[GridItemData] = []
 
 func get_grid_width() -> int:
 	return grid_width
 
-func add_item(_data: ItemData) -> void:
+func try_add_item(_data: ItemData) -> void:
 	pass
 
 func init_inv() -> void:
@@ -22,4 +22,7 @@ func init_inv() -> void:
 
 			var _debug_string = "New slot created! Position: ({0}, {1})"
 			print_debug(_debug_string.format([_x, _y]))
+	else:
+		#TODO: remove _grid_positions from array based on what items are in the inventory
+		pass
 
