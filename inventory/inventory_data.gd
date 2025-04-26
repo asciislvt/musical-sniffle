@@ -9,6 +9,9 @@ var _item_array: Array[GridItemData] = []
 func get_grid_width() -> int:
 	return grid_width
 
+func get_items() -> Array[GridItemData]:
+	return _item_array
+
 func try_add_item(_data: ItemData) -> void:
 	var _positions: Array[Vector2i] = _find_free_positions(_data)
 	if _positions.is_empty():
@@ -43,15 +46,12 @@ func _find_free_positions(_data: ItemData) -> Array[Vector2i]:
 	return _positions
 
 func init_inv() -> void:
-	if _item_array.is_empty():
+	if _grid_positions.is_empty() && max_slots > 0:
 		for i in max_slots:
 			var _x = i % grid_width
 			var _y = i / grid_width
 			var _pos = Vector2i(_x, _y)
 			_grid_positions.append(_pos)
 
-			var _debug_string = "New slot created! Position: ({0}, {1})"
-			print_debug(_debug_string.format([_x, _y]))
-	else:
-		#TODO: remove _grid_positions from array based on what items are in the inventory
-		pass
+			# var _debug_string = "New slot created! Position: ({0}, {1})"
+			# print_debug(_debug_string.format([_x, _y]))

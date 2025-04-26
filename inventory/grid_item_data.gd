@@ -9,4 +9,3 @@ func _init(_pos_taken: Array[Vector2i], _data: ItemData) -> void:
 	pos_taken = _pos_taken
 	anchor_pos = pos_taken[0]
 	icon = _data.icon
-

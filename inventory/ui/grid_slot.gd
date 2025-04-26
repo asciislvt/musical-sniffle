@@ -1,5 +1,5 @@
 extends Control
-class_name InventorySlot
+class_name GridSlot
 
 enum SlotStates{
 	SLOT_DEFAULT,

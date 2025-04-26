@@ -15,4 +15,5 @@ func _on_data_requested(_requester: InventoryGrid) -> void:
 
 func _on_item_picked(_item: ItemData) -> void:
 	data.try_add_item(_item)
+	Global.inv_updated.emit(data)
 

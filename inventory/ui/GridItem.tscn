@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ao0p2o2ua37"]
+
+[ext_resource type="Script" uid="uid://6ayaddbcfmvc" path="res://inventory/ui/grid_item.gd" id="1_05gtj"]
+
+[node name="InventoryItem" type="Control" node_paths=PackedStringArray("icon")]
+z_index = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_05gtj")
+icon = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
