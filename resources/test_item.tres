@@ -7,7 +7,7 @@ size = Vector2(64, 64)
 
 [resource]
 script = ExtResource("1_pdhpq")
-name = "poop"
+name = "item 1"
 desc = "pee"
 icon = SubResource("PlaceholderTexture2D_pdhpq")
 shape_offset = Array[Vector2i]([Vector2i(0, 0)])

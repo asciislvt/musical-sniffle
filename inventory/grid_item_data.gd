@@ -1,6 +1,12 @@
 extends Resource
 class_name GridItemData
 
-var _data: ItemData
 var anchor_pos: Vector2i
 var pos_taken: Array[Vector2i]
+var icon: Texture2D
+
+func _init(_pos_taken: Array[Vector2i], _data: ItemData) -> void:
+	pos_taken = _pos_taken
+	anchor_pos = pos_taken[0]
+	icon = _data.icon
+

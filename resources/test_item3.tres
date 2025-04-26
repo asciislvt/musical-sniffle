@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://0lrlqx0fmu2t"]
+
+[ext_resource type="Script" uid="uid://dtgtgnaulapfv" path="res://inventory/item_data.gd" id="1_wktb2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pdhpq"]
+size = Vector2(128, 128)
+
+[resource]
+script = ExtResource("1_wktb2")
+name = "item3 lol"
+desc = "pee"
+icon = SubResource("PlaceholderTexture2D_pdhpq")
+shape_offset = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)])
+metadata/_custom_type_script = "uid://dtgtgnaulapfv"

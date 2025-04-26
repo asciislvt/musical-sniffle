@@ -10,7 +10,37 @@ func get_grid_width() -> int:
 	return grid_width
 
 func try_add_item(_data: ItemData) -> void:
-	pass
+	var _positions: Array[Vector2i] = _find_free_positions(_data)
+	if _positions.is_empty():
+		print_debug("no space >:((")
+	else:
+		_place_item(_positions, _data)
+
+func _place_item(_positions: Array[Vector2i], _data: ItemData) -> void:
+	var _new_item = GridItemData.new(_positions, _data)
+	for _pos in _positions:
+		_grid_positions.erase(_pos)
+	
+	_item_array.append(_new_item)
+
+func _find_free_positions(_data: ItemData) -> Array[Vector2i]:
+	var _item_offset: Array[Vector2i] = _data.shape_offset
+	var _positions: Array[Vector2i] = []
+
+	for _anchor in _grid_positions:
+		for _offset in _item_offset:
+			var _target_pos = _anchor + _offset
+			if !_grid_positions.has(_target_pos):
+				_positions.clear()
+				break
+			
+			_positions.append(_target_pos)
+	
+			if _positions.size() == _item_offset.size():
+				print_debug("found free positions")
+				return _positions
+
+	return _positions
 
 func init_inv() -> void:
 	if _item_array.is_empty():
@@ -25,4 +55,3 @@ func init_inv() -> void:
 	else:
 		#TODO: remove _grid_positions from array based on what items are in the inventory
 		pass
-
