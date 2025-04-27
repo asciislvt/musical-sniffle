@@ -18,6 +18,7 @@ offset_bottom = 255.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_dsn3v")
 script = ExtResource("1_ydclr")
 slot_scene = ExtResource("2_f6dkd")
@@ -38,3 +39,6 @@ size_flags_vertical = 0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 4
+
+[node name="InventorySlot" parent="MarginContainer/GridContainer" instance=ExtResource("2_f6dkd")]
+layout_mode = 2

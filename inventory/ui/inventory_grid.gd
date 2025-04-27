@@ -12,6 +12,7 @@ var _item_held: Control
 func _ready() -> void:
 	if !_grid_container:
 		print_debug("no grid container :((")
+
 	Global.inv_player_data_requested.emit(self)
 	Global.inv_updated.connect(self._on_inv_updated)
 
@@ -38,6 +39,12 @@ func _build_inventory(_data: InventoryData) -> void:
 	else:
 		return
 
+func _clear_grid() -> void:
+	for _child in _grid_container.get_children():
+		_child.queue_free()
+
+	_slots.clear()
+
 func _add_item(_parent: Node, _data: GridItemData):
 	var _item: GridItem = item_scene.instantiate()
 	_item.load_item(_data)
@@ -49,12 +56,6 @@ func _add_slot(_parent: Node, _pos: Vector2i) -> void:
 	_slot.set_grid_position(_pos)
 	_slots[_pos] = _slot
 	_parent.add_child(_slot)
-
-func _clear_grid() -> void:
-	for _child in _grid_container.get_children():
-		_child.queue_free()
-	
-	_slots.clear()
 
 func _on_inv_updated(_data: InventoryData) -> void:
 	print_debug("inventory updated, rebuilding!")
