@@ -6,6 +6,7 @@
 size = Vector2(64, 64)
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_pdhpq")
 name = "item 1"
 desc = "pee"

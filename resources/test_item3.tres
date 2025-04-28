@@ -6,6 +6,7 @@
 size = Vector2(128, 128)
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_wktb2")
 name = "item3 lol"
 desc = "pee"

@@ -6,6 +6,7 @@
 size = Vector2(128, 64)
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_r2ymp")
 name = "item2"
 desc = "pee"

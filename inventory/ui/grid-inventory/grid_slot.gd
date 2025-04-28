@@ -1,12 +1,5 @@
-extends Control
+extends GridNode
 class_name GridSlot
-
-enum SlotStates{
-	SLOT_DEFAULT,
-	SLOT_HOVER,
-	SLOT_TAKEN,
-	SLOT_OPEN,
-}
 
 var _grid_position: Vector2i
 var _slot_state: SlotStates = SlotStates.SLOT_DEFAULT
