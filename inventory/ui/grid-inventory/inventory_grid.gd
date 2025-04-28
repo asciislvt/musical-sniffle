@@ -21,7 +21,10 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed("fire1"):
-			_pick_item()
+			if !_item_held:
+				_pick_item()
+			else:
+				_place_item()
 
 func set_data(_data: InventoryData) -> void:
 	_build_inventory(_data)
@@ -52,10 +55,20 @@ func _build_inventory(_data: InventoryData) -> void:
 		return
 
 func _pick_item() -> void:
-	pass
+	for child in item_container.get_children():
+		if child is GridItem:
+			if child.is_hovered():
+				child.hold_item()
+				_item_held = child
 
 func _place_item() -> void:
-	pass
+	for child in slot_container.get_children():
+		if child is GridSlot:
+			if child.is_hovered():
+				print("place da item >:DD")
+				return
+			else:
+				print_debug("return da item >:3")
 
 func _clear_slots() -> void:
 	for _child in slot_container.get_children():

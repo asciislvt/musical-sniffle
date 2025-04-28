@@ -4,7 +4,6 @@ class_name GridSlot
 @export var icon: TextureRect
 
 var _grid_position: Vector2i
-var _slot_state: SlotStates = SlotStates.SLOT_DEFAULT
 
 func _ready() -> void:
 	_set_state(SlotStates.SLOT_DEFAULT)

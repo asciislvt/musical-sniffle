@@ -5,7 +5,7 @@
 [node name="InventoryItem" type="Control" node_paths=PackedStringArray("icon")]
 layout_mode = 3
 anchors_preset = 0
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("1_05gtj")
 icon = NodePath("TextureRect")
 
