@@ -20,3 +20,11 @@ func hold_item() -> void:
 
 func place_item() -> void:
 	_set_state(ItemStates.ITEM_DEFAULT)
+
+func _on_mouse_entered() -> void:
+	_set_state(ItemStates.ITEM_HOVER)
+	# print_debug("mouse entered item")
+
+func _on_mouse_exited() -> void:
+	_set_state(ItemStates.ITEM_DEFAULT)
+	# print_debug("mouse exited item")

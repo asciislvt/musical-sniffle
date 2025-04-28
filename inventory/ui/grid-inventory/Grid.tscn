@@ -39,20 +39,6 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 4
 
-[node name="InventorySlot" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
-layout_mode = 2
-
-[node name="InventorySlot2" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
-layout_mode = 2
-
-[node name="InventorySlot4" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
-layout_mode = 2
-
-[node name="InventorySlot5" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
-layout_mode = 2
-
 [node name="ItemLayer" type="Control" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2

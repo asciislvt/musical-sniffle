@@ -18,6 +18,11 @@ func _ready() -> void:
 	Global.inv_player_data_requested.emit(self)
 	Global.inv_updated.connect(self._on_inv_updated)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if Input.is_action_just_pressed("fire1"):
+			_pick_item()
+
 func set_data(_data: InventoryData) -> void:
 	_build_inventory(_data)
 
@@ -46,6 +51,12 @@ func _build_inventory(_data: InventoryData) -> void:
 	else:
 		return
 
+func _pick_item() -> void:
+	pass
+
+func _place_item() -> void:
+	pass
+
 func _clear_slots() -> void:
 	for _child in slot_container.get_children():
 		_child.queue_free()
@@ -57,6 +68,7 @@ func _clear_items() -> void:
 
 func _add_item(_parent: Control, _data: GridItemData):
 	var _item: GridItem = item_scene.instantiate()
+	
 	print_debug(_parent.get_screen_position())
 	_item.set_position(_parent.position)
 	_item.load_item(_data)

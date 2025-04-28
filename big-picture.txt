@@ -1,8 +1,0 @@
-InventoryManager  | modifies data using functions from inventorydata
-  - InventoryData | holds items, lol. has functions to add, remove, move items
-  - ItemData      | simple enough, very self explanatory
-
-InventoryUI       | visual representation of inventory data, this one should just deal with opening and closing
-  - InventoryGridUI | GridContainer full of slots, will handle placement. Sends signals that update the players inventory data. Rebuilds itself whenever inventory is updated
-    - InventorySlot | Simple slot, has different states for valid and invalid placement, is aware of its position
-    - InventoryItem | ITS AN ITEM AHHADNUIWNAIUDNWUINSJK

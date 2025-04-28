@@ -5,14 +5,9 @@
 [node name="InventoryItem" type="Control" node_paths=PackedStringArray("icon")]
 layout_mode = 3
 anchors_preset = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
 mouse_filter = 1
 script = ExtResource("1_05gtj")
 icon = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 2
-
-[connection signal="mouse_entered" from="TextureRect" to="." method="_on_texture_rect_mouse_entered"]
-[connection signal="mouse_exited" from="TextureRect" to="." method="_on_texture_rect_mouse_exited"]
+layout_mode = 0
