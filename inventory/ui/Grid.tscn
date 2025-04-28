@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsn3v"]
 bg_color = Color(0.113725, 0.0392157, 0.0980392, 0.752941)
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("_grid_container")]
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("slot_container", "item_container")]
 custom_minimum_size = Vector2(420, 510)
 anchors_preset = 4
 anchor_top = 0.5
@@ -23,22 +23,36 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dsn3v")
 script = ExtResource("1_ydclr")
 slot_scene = ExtResource("2_f6dkd")
 item_scene = ExtResource("3_ght5s")
-_grid_container = NodePath("MarginContainer/GridContainer")
+slot_container = NodePath("MarginContainer/SlotLayer")
+item_container = NodePath("MarginContainer/ItemLayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 16
+theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="SlotLayer" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 4
 
-[node name="InventorySlot" parent="MarginContainer/GridContainer" instance=ExtResource("2_f6dkd")]
+[node name="InventorySlot" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="MarginContainer/SlotLayer" instance=ExtResource("2_f6dkd")]
+layout_mode = 2
+
+[node name="ItemLayer" type="Control" parent="MarginContainer"]
 layout_mode = 2

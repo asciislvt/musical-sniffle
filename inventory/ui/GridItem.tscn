@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" uid="uid://6ayaddbcfmvc" path="res://inventory/ui/grid_item.gd" id="1_05gtj"]
 
-[node name="InventoryItem" type="MarginContainer" node_paths=PackedStringArray("icon")]
+[node name="InventoryItem" type="Control" node_paths=PackedStringArray("icon")]
+layout_mode = 3
+anchors_preset = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+mouse_filter = 1
 script = ExtResource("1_05gtj")
 icon = NodePath("TextureRect")
 
