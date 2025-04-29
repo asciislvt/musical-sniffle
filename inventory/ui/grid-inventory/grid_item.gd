@@ -8,12 +8,12 @@ var _pos_taken: Array[Vector2i]
 var _offsets: Array[Vector2i]
 
 func _ready() -> void:
-	_set_state(ItemStates.ITEM_DEFAULT)
+	_set_state(NodeStates.ITEM_DEFAULT)
 	icon.mouse_entered.connect(self._on_mouse_entered)
 	icon.mouse_exited.connect(self._on_mouse_exited)
 
 func _process(delta: float) -> void:
-	if _state == ItemStates.ITEM_HELD:
+	if _state == NodeStates.ITEM_HELD:
 		var _mouse_pos = get_global_mouse_position()
 		global_position = global_position.lerp(_mouse_pos - (icon.size / 2), 20 * delta)
 	else:
@@ -26,13 +26,13 @@ func load_item(_data: GridItemData) -> void:
 	_offsets = _data.offsets
 
 func hold_item() -> void:
-	_set_state(ItemStates.ITEM_HELD)
+	_set_state(NodeStates.ITEM_HELD)
 
 	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	icon.z_index = 1
 
 func place_item(_anchor_slot: GridSlot) -> void:
-	_set_state(ItemStates.ITEM_DEFAULT)
+	_set_state(NodeStates.ITEM_DEFAULT)
 
 	icon.mouse_filter = Control.MOUSE_FILTER_PASS
 	icon.z_index = 0
@@ -44,21 +44,21 @@ func place_item(_anchor_slot: GridSlot) -> void:
 	tween.tween_property(self, "position", _anchor_slot.position, 0.2)
 
 # func _on_item_held() -> void:
-# 	if _state != ItemStates.ITEM_HELD:
+# 	if _state != NodeStates.ITEM_HELD:
 # 		pass
-# 		_set_state(ItemStates.ITEM_HOVER)
+# 		_set_state(NodeStates.ITEM_HOVER)
 #
 # func _on_item_placed() -> void:
-# 	_set_state(ItemStates.ITEM_DEFAULT)
+# 	_set_state(NodeStates.ITEM_DEFAULT)
 
 func _on_mouse_entered() -> void:
-	if _state != ItemStates.ITEM_HELD:
-		_set_state(ItemStates.ITEM_HOVER)
+	if _state != NodeStates.ITEM_HELD:
+		_set_state(NodeStates.ITEM_HOVER)
 
 	return
 
 func _on_mouse_exited() -> void:
-	if _state != ItemStates.ITEM_HELD:
-		_set_state(ItemStates.ITEM_DEFAULT)
+	if _state != NodeStates.ITEM_HELD:
+		_set_state(NodeStates.ITEM_DEFAULT)
 
 	return
