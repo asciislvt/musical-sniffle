@@ -19,6 +19,9 @@ func try_add_item(_data: ItemData) -> void:
 	else:
 		_place_item(_positions, _data)
 
+func try_place_item(_data: GridItemData) -> void:
+	pass
+
 func _place_item(_positions: Array[Vector2i], _data: ItemData) -> void:
 	var _new_item = GridItemData.new(_positions, _data)
 	for _pos in _positions:

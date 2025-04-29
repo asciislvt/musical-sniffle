@@ -1,6 +1,9 @@
 extends PanelContainer
 class_name InventoryGrid
 
+signal item_picked()
+signal item_placed()
+
 @export var slot_scene: PackedScene
 @export var item_scene: PackedScene
 @export var slot_container: GridContainer = null
@@ -8,7 +11,8 @@ class_name InventoryGrid
 
 var _slots: Dictionary[Vector2i, GridSlot] = {}
 var _columns: int
-var _item_held: Control
+var _slot_hovered: GridSlot
+var _item_held: GridItem
 
 func _ready() -> void:
 	if !slot_container:
@@ -49,7 +53,6 @@ func _build_inventory(_data: InventoryData) -> void:
 	if !_items.is_empty():
 		for _item in _items:
 			var _parent = _item.anchor_pos
-			print_debug(_slots[_parent])
 			_add_item(_slots[_parent], _item)
 	else:
 		return
@@ -60,15 +63,18 @@ func _pick_item() -> void:
 			if child.is_hovered():
 				child.hold_item()
 				_item_held = child
+				item_picked.emit()
 
 func _place_item() -> void:
-	for child in slot_container.get_children():
-		if child is GridSlot:
-			if child.is_hovered():
-				print("place da item >:DD")
-				return
-			else:
-				print_debug("return da item >:3")
+	var _anchor_slot: GridSlot
+	if _slot_hovered:
+		_anchor_slot = _slot_hovered
+	else:
+		_anchor_slot = _slots[_item_held._anchor]
+
+	_item_held.place_item(_anchor_slot)
+	_item_held = null
+	item_placed.emit()
 
 func _clear_slots() -> void:
 	for _child in slot_container.get_children():
@@ -81,8 +87,7 @@ func _clear_items() -> void:
 
 func _add_item(_parent: Control, _data: GridItemData):
 	var _item: GridItem = item_scene.instantiate()
-	
-	print_debug(_parent.get_screen_position())
+
 	_item.set_position(_parent.position)
 	_item.load_item(_data)
 	item_container.add_child(_item)
@@ -90,9 +95,18 @@ func _add_item(_parent: Control, _data: GridItemData):
 func _add_slot(_parent: Node, _pos: Vector2i) -> void:
 	var _slot: GridSlot = slot_scene.instantiate()
 
+	_slot.slot_hovered.connect(self._on_slot_hovered)
+	_slot.slot_left.connect(self._on_slot_left)
+
 	_slot.set_grid_position(_pos)
 	_slots[_pos] = _slot
 	_parent.add_child(_slot)
+
+func _on_slot_hovered(slot: GridSlot) -> void:
+	_slot_hovered = slot
+
+func _on_slot_left() -> void:
+	_slot_hovered = null
 
 func _on_inv_updated(_data: InventoryData) -> void:
 	print_debug("inventory updated, rebuilding!")

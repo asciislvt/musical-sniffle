@@ -10,6 +10,7 @@ enum SlotStates{
 
 enum ItemStates{
 	ITEM_DEFAULT,
+	ITEM_LOCKED,
 	ITEM_HOVER,
 	ITEM_HELD,
 }
@@ -29,6 +30,7 @@ func _set_state(_s) -> void:
 func _on_state_change() -> void:
 	match _state:
 		SlotStates.SLOT_DEFAULT:
+			mouse_filter = Control.MOUSE_FILTER_PASS
 			self.modulate = Color(1, 1, 1, 1)
 		SlotStates.SLOT_HOVER:
 			self.modulate = Color(0.5, 0.5, 0.5, 1)
@@ -39,10 +41,13 @@ func _on_state_change() -> void:
 		ItemStates.ITEM_DEFAULT:
 			mouse_filter = Control.MOUSE_FILTER_PASS
 			self.modulate = Color(1, 1, 1, 1)
+		ItemStates.ITEM_LOCKED:
+			mouse_filter = Control.MOUSE_FILTER_STOP
+			self.modulate = Color(1, 1, 1, 1)
 		ItemStates.ITEM_HOVER:
-			self.modulate = Color(0.5, 0.5, 0.5, 1)
+			self.modulate = Color(1, 1, 1, 1)
 		ItemStates.ITEM_HELD:
-			self.modulate = Color(0.8, 0.8, 0.8, 1)
+			self.modulate = Color(1, 1, 1, 1)
 
 func _on_mouse_entered() -> void:
 	print_debug("mouse entered")
