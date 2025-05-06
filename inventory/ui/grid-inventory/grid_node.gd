@@ -39,8 +39,8 @@ func _on_state_change() -> void:
 			mouse_filter = Control.MOUSE_FILTER_PASS
 			self.modulate = Color(1, 1, 1, 1)
 		NodeStates.ITEM_LOCKED:
-			mouse_filter = Control.MOUSE_FILTER_STOP
-			self.modulate = Color(0.4, 0.4, 0.4, 1)
+			mouse_filter = Control.MOUSE_FILTER_PASS
+			self.modulate = Color(0.2, 0.1, 0.1, 1)
 		NodeStates.ITEM_HOVER:
 			self.modulate = Color(0.8, 0.8, 0.8, 1)
 		NodeStates.ITEM_HELD:

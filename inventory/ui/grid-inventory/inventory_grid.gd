@@ -71,10 +71,11 @@ func _place_item() -> void:
 		_anchor_slot = _slot_hovered
 	else:
 		_anchor_slot = _slots[_item_held._anchor]
-
-	_item_held.place_item(_anchor_slot)
-	_item_held = null
-	item_placed.emit()
+		_item_held.place_item(_anchor_slot)
+		_item_held = null
+		item_placed.emit()
+	
+	Global.inv_item_moved.emit(_item_held._id, _anchor_slot._grid_position)
 
 func _clear_slots() -> void:
 	for _child in slot_container.get_children():
@@ -87,6 +88,9 @@ func _clear_items() -> void:
 
 func _add_item(_parent: Control, _data: GridItemData):
 	var _item: GridItem = item_scene.instantiate()
+
+	item_placed.connect(_item._on_item_placed)
+	item_picked.connect(_item._on_item_held)
 
 	_item.set_position(_parent.position)
 	_item.load_item(_data)

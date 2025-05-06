@@ -3,6 +3,7 @@ class_name GridItem
 
 @export var icon: TextureRect
 
+var _id: int
 var _anchor: Vector2i
 var _pos_taken: Array[Vector2i]
 var _offsets: Array[Vector2i]
@@ -21,6 +22,7 @@ func _process(delta: float) -> void:
 
 func load_item(_data: GridItemData) -> void:
 	icon.texture = _data.icon
+	_id = _data.id
 	_anchor = _data.anchor_pos
 	_pos_taken = _data.pos_taken
 	_offsets = _data.offsets
@@ -41,18 +43,19 @@ func place_item(_anchor_slot: GridSlot) -> void:
 	if !tween.is_valid():
 		tween.kill()
 	
-	tween.tween_property(self, "position", _anchor_slot.position, 0.2)
+	tween.tween_property(self, "position", _anchor_slot.position, 0.15)
 
-# func _on_item_held() -> void:
-# 	if _state != NodeStates.ITEM_HELD:
-# 		pass
-# 		_set_state(NodeStates.ITEM_HOVER)
-#
-# func _on_item_placed() -> void:
-# 	_set_state(NodeStates.ITEM_DEFAULT)
+func _on_item_held() -> void:
+	if _state != NodeStates.ITEM_HELD:
+		_set_state(NodeStates.ITEM_LOCKED)
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func _on_item_placed() -> void:
+	_set_state(NodeStates.ITEM_DEFAULT)
+	icon.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func _on_mouse_entered() -> void:
-	if _state != NodeStates.ITEM_HELD:
+	if _state != NodeStates.ITEM_HELD || _state != NodeStates.ITEM_LOCKED:
 		_set_state(NodeStates.ITEM_HOVER)
 
 	return

@@ -17,17 +17,24 @@ func try_add_item(_data: ItemData) -> void:
 	if _positions.is_empty():
 		print_debug("no space >:((")
 	else:
-		_place_item(_positions, _data)
+		_add_item(_positions, _data)
 
-func try_place_item(_data: GridItemData) -> void:
-	pass
+func try_move_item(_id: int, _new_anchor: Vector2i) -> void:
+	var _item: GridItemData = _item_array[_id]
+	var _positions_taken = _item.get_positions_taken()
 
-func _place_item(_positions: Array[Vector2i], _data: ItemData) -> void:
+
+
+# func _move_item(_data: GridItemData) -> void:
+# 	pass
+
+func _add_item(_positions: Array[Vector2i], _data: ItemData) -> void:
 	var _new_item = GridItemData.new(_positions, _data)
 	for _pos in _positions:
 		_grid_positions.erase(_pos)
 	
 	_item_array.append(_new_item)
+	_new_item.set_id(_item_array.size() - 1)
 
 func _find_free_positions(_data: ItemData) -> Array[Vector2i]:
 	var _item_offset: Array[Vector2i] = _data.shape_offset

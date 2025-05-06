@@ -8,4 +8,4 @@
 
 [node name="Global" type="Node"]
 script = ExtResource("1_6q3x5")
-_item_pool = Array[ExtResource("2_hhif3")]([ExtResource("3_74nqk"), ExtResource("4_ol57v"), ExtResource("5_gfa4i")])
+item_pool = Array[ExtResource("2_hhif3")]([ExtResource("3_74nqk"), ExtResource("4_ol57v"), ExtResource("5_gfa4i")])
