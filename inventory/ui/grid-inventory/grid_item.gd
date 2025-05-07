@@ -20,6 +20,12 @@ func _process(delta: float) -> void:
 	else:
 		pass
 
+func get_item_id() -> int:
+	return _id
+
+func get_anchor_position() -> Vector2i:
+	return _anchor
+
 func load_item(_data: GridItemData) -> void:
 	icon.texture = _data.icon
 	_id = _data.id
@@ -35,6 +41,7 @@ func hold_item() -> void:
 
 func place_item(_anchor_slot: GridSlot) -> void:
 	_set_state(NodeStates.ITEM_DEFAULT)
+	_set_grid_positions(_anchor_slot._grid_position)
 
 	icon.mouse_filter = Control.MOUSE_FILTER_PASS
 	icon.z_index = 0
@@ -44,6 +51,13 @@ func place_item(_anchor_slot: GridSlot) -> void:
 		tween.kill()
 	
 	tween.tween_property(self, "position", _anchor_slot.position, 0.15)
+
+func _set_grid_positions(_pos: Vector2i) -> void:
+	_anchor = _pos
+	_pos_taken.clear()
+	for offset in _offsets:
+		_pos_taken.append(_anchor + offset)
+
 
 func _on_item_held() -> void:
 	if _state != NodeStates.ITEM_HELD:

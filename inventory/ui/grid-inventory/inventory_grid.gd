@@ -21,6 +21,7 @@ func _ready() -> void:
 		print_debug("no item contaienr :((")
 	Global.inv_player_data_requested.emit(self)
 	Global.inv_updated.connect(self._on_inv_updated)
+	Global.inv_item_moved.connect(self._place_item)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -28,7 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if !_item_held:
 				_pick_item()
 			else:
-				_place_item()
+				_try_place_item()
 
 func set_data(_data: InventoryData) -> void:
 	_build_inventory(_data)
@@ -65,17 +66,22 @@ func _pick_item() -> void:
 				_item_held = child
 				item_picked.emit()
 
-func _place_item() -> void:
-	var _anchor_slot: GridSlot
-	if _slot_hovered:
-		_anchor_slot = _slot_hovered
+func _try_place_item() -> void:
+	var anchor_slot: GridSlot
+	if _slot_hovered == null || _slot_hovered == _slots[_item_held._anchor]:
+		anchor_slot = _slots[_item_held._anchor]
+		_place_item(anchor_slot._grid_position)
+		return
 	else:
-		_anchor_slot = _slots[_item_held._anchor]
-		_item_held.place_item(_anchor_slot)
-		_item_held = null
-		item_placed.emit()
+		anchor_slot = _slot_hovered
 	
-	Global.inv_item_moved.emit(_item_held._id, _anchor_slot._grid_position)
+	Global.inv_item_move_requested.emit(_item_held.get_item_id(), anchor_slot._grid_position)
+
+func _place_item(_slot_position: Vector2i) -> void:
+	var _slot: GridSlot = _slots[_slot_position]
+	_item_held.place_item(_slot)
+	_item_held = null
+	item_placed.emit()
 
 func _clear_slots() -> void:
 	for _child in slot_container.get_children():

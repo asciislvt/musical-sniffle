@@ -1,9 +1,10 @@
 extends Node
 
-signal inv_player_data_requested(_node: InventoryGrid)
 signal item_picked(_item: ItemData)
+signal inv_player_data_requested(_node: InventoryGrid)
+signal inv_item_move_requested(_id: int, _new_anchor: Vector2i)
+signal inv_item_moved(_anchor: Vector2i)
 signal inv_updated(_data: InventoryData)
-signal inv_item_moved(_id: int, _new_anchor: Vector2i)
 
 @export var item_pool: Array[ItemData]
 

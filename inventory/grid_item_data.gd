@@ -22,6 +22,9 @@ func set_position(_anchor: Vector2i) -> void:
 	for offset in offsets:
 		pos_taken.append(anchor_pos + offset)
 
+func get_offsets() -> Array[Vector2i]:
+	return offsets
+
 func get_positions_taken() -> Array[Vector2i]:
 	if pos_taken.is_empty():
 		return []

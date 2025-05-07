@@ -13,55 +13,78 @@ func get_items() -> Array[GridItemData]:
 	return _item_array
 
 func try_add_item(_data: ItemData) -> void:
-	var _positions: Array[Vector2i] = _find_free_positions(_data)
-	if _positions.is_empty():
+	var positions: Array[Vector2i] = _find_free_positions(_data)
+	if positions.is_empty():
 		print_debug("no space >:((")
 	else:
-		_add_item(_positions, _data)
+		_add_item(positions, _data)
 
 func try_move_item(_id: int, _new_anchor: Vector2i) -> void:
-	var _item: GridItemData = _item_array[_id]
-	var _positions_taken = _item.get_positions_taken()
+	var item: GridItemData = _item_array[_id]
+
+	if !_grid_positions.has(_new_anchor):
+		return
+	else:
+		for offset in item.get_offsets():
+			var new_pos = _new_anchor + offset
+			if _grid_positions.has(new_pos):
+				print_debug("position freee")
+				continue
+			else:
+				print_debug("no space >:((")
+				return
+		_move_item(item, _new_anchor)
 
 
-
-# func _move_item(_data: GridItemData) -> void:
-# 	pass
+func _move_item(_item: GridItemData, _new_anchor: Vector2i) -> void:
+	var prev_positions = _item.get_positions_taken()
+	for pos in prev_positions:
+		_grid_positions.append(pos)
+		print_debug("position freed: {0}".format([pos]))
+	
+	_item.set_position(_new_anchor)
+	for pos in _item.get_positions_taken():
+		if _grid_positions.has(pos):
+			_grid_positions.erase(pos)
+	
+	
+	Global.inv_item_moved.emit(_new_anchor)
+	print_debug("item moved!")
 
 func _add_item(_positions: Array[Vector2i], _data: ItemData) -> void:
-	var _new_item = GridItemData.new(_positions, _data)
-	for _pos in _positions:
-		_grid_positions.erase(_pos)
+	var new_item = GridItemData.new(_positions, _data)
+	for pos in _positions:
+		_grid_positions.erase(pos)
 	
-	_item_array.append(_new_item)
-	_new_item.set_id(_item_array.size() - 1)
+	_item_array.append(new_item)
+	new_item.set_id(_item_array.size() - 1)
 
 func _find_free_positions(_data: ItemData) -> Array[Vector2i]:
-	var _item_offset: Array[Vector2i] = _data.shape_offset
-	var _positions: Array[Vector2i] = []
+	var item_offset: Array[Vector2i] = _data.shape_offset
+	var positions: Array[Vector2i] = []
 
-	for _anchor in _grid_positions:
-		for _offset in _item_offset:
-			var _target_pos = _anchor + _offset
-			if !_grid_positions.has(_target_pos):
-				_positions.clear()
+	for anchor in _grid_positions:
+		for offset in item_offset:
+			var target_pos = anchor + offset
+			if !_grid_positions.has(target_pos):
+				positions.clear()
 				break
 			
-			_positions.append(_target_pos)
+			positions.append(target_pos)
 	
-			if _positions.size() == _item_offset.size():
+			if positions.size() == item_offset.size():
 				print_debug("found free positions")
-				return _positions
+				return positions
 
-	return _positions
+	return positions
 
 func init_inv() -> void:
 	if _grid_positions.is_empty() && max_slots > 0:
 		for i in max_slots:
 			var _x = i % grid_width
 			var _y = i / grid_width
-			var _pos = Vector2i(_x, _y)
-			_grid_positions.append(_pos)
+			var pos = Vector2i(_x, _y)
+			_grid_positions.append(pos)
 
 			# var _debug_string = "New slot created! Position: ({0}, {1})"
 			# print_debug(_debug_string.format([_x, _y]))
