@@ -21,19 +21,17 @@ func try_add_item(_data: ItemData) -> void:
 
 func try_move_item(_id: int, _new_anchor: Vector2i) -> void:
 	var item: GridItemData = _item_array[_id]
+	print(_new_anchor)
 
-	if !_grid_positions.has(_new_anchor):
-		return
-	else:
-		for offset in item.get_offsets():
-			var new_pos = _new_anchor + offset
-			if _grid_positions.has(new_pos):
-				print_debug("position freee")
-				continue
-			else:
-				print_debug("no space >:((")
-				return
-		_move_item(item, _new_anchor)
+	for offset in item.get_offsets():
+		var new_pos = _new_anchor + offset
+
+		if !_grid_positions.has(new_pos) && !item.pos_taken.has(new_pos):
+			print_debug("no space >:((")
+			return
+	
+	print_debug("moving item :3")
+	_move_item(item, _new_anchor)
 
 
 func _move_item(_item: GridItemData, _new_anchor: Vector2i) -> void:
